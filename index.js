@@ -11,8 +11,8 @@ document.getElementById('input-button').addEventListener('click', function() {
         faqTitle.textContent = question;
         var faqText = document.createElement('p');
         faqText.classList.add('faq-text');
-        faqText.textContent = answer; 
-        var faqToggleBtn=document.createElement('button');
+        faqText.textContent = answer;
+        var faqToggleBtn = document.createElement('button');
         faqToggleBtn.classList.add('faq-toggle');
         faqToggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i><i class="fas fa-times"></i>';
         newFaqDiv.appendChild(faqTitle);
@@ -21,15 +21,20 @@ document.getElementById('input-button').addEventListener('click', function() {
         faqToggleBtn.addEventListener('click', function() {
             newFaqDiv.classList.toggle('active');
         });
-        faqContainer.insertBefore(newFaqDiv,faqContainer.firstChild);
+
+        var crossIcon = faqToggleBtn.querySelector('.fa-times');
+        crossIcon.addEventListener('click', function() {
+            newFaqDiv.remove();
+        });
+        faqContainer.insertBefore(newFaqDiv, faqContainer.firstChild);
         document.getElementById('input-q').value = '';
         document.getElementById('input-a').value = '';
     }
 });
-
 const faqBtn = document.querySelectorAll('.faq-toggle');
 faqBtn.forEach(function(toggle) {
     toggle.addEventListener('click', function() {
         toggle.parentNode.classList.toggle('active');
     });
 });
+
